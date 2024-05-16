@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Faker\Provider\ar_EG\Address;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +14,13 @@ class TaskNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -27,7 +29,7 @@ class TaskNotificationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Task Notification Mail',
+            subject: 'Laravel Ten Queue Test Mail',
         );
     }
 
@@ -37,7 +39,10 @@ class TaskNotificationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'task_notifications',
+            with: [
+                'data' => $this->data
+            ]
         );
     }
 
@@ -46,8 +51,8 @@ class TaskNotificationMail extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments(): array
-    {
-        return [];
-    }
+    // public function attachments(): array
+    // {
+    //     return [];
+    // }
 }

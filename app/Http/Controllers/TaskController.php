@@ -28,28 +28,26 @@ class TaskController extends Controller
             'description' => 'required',
         ]);
 
-        $mail_data = [
-            'recipient' => 'nkthilinamadhusanka@gmail.com',
-            'subject' => 'Task created',
-            'body' => 'Task created successfully.'
-        ];
+        // $mail_data = [
+        //     'recipient' => 'nkthilinamadhusanka@gmail.com',
+        //     'subject' => 'Task created',
+        //     'body' => 'Task created successfully.'
+        // ];
 
-        Mail::send('task_notifications', $mail_data, function ($message) use ($mail_data) {
-            $message->to($mail_data['recipient'])
-                ->subject($mail_data['subject']);
-        });
-
-        // dispatch(new SendTaskNotification([ 'message' => 'Done']));
+        // Mail::send('task_notifications', $mail_data, function ($message) use ($mail_data) {
+        //     $message->to($mail_data['recipient'])
+        //         ->subject($mail_data['subject']);
+        // });
 
         $task = Task::create($request->all());
         return redirect(route('task.index'))
             ->with('success', 'Task created successfully.');
     }
 
-    public function show(Task $task)
-    {
-        return view('tasks.show', ['task' => $task]);
-    }
+    // public function show(Task $task)
+    // {
+    //     return view('tasks.show', ['task' => $task]);
+    // }
 
     public function edit(Task $task)
     {
@@ -64,16 +62,16 @@ class TaskController extends Controller
             'status' => 'required',
         ]);
 
-        $mail_data = [
-            'recipient' => 'nkthilinamadhusanka@gmail.com',
-            'subject' => 'Task updated',
-            'body' => 'Task updated successfully.'
-        ];
+        // $mail_data = [
+        //     'recipient' => 'nkthilinamadhusanka@gmail.com',
+        //     'subject' => 'Task updated',
+        //     'body' => 'Task updated successfully.'
+        // ];
 
-        Mail::send('task_notifications', $mail_data, function ($message) use ($mail_data) {
-            $message->to($mail_data['recipient'])
-                ->subject($mail_data['subject']);
-        });
+        // Mail::send('task_notifications', $mail_data, function ($message) use ($mail_data) {
+        //     $message->to($mail_data['recipient'])
+        //         ->subject($mail_data['subject']);
+        // });
 
         $task->update($request->all());
         return redirect(route('task.index'))
@@ -86,4 +84,11 @@ class TaskController extends Controller
         return redirect(route('task.index'))
             ->with('success', 'Task deleted successfully.');
     }
+
+    // public function sendEmail()
+    // {
+    //     dispatch(new SendTaskNotification());
+    //     dd('Email sent successfully');
+
+    // }
 }

@@ -27,11 +27,11 @@
         @method('POST')
         <div>
             <label for="title">Title </label>
-            <input type="text" name="title" placeholder="Enter Title"/>
+            <input type="text" name="title" placeholder="Enter Title" />
         </div>
         <div>
             <label for="description">Description </label>
-            <input type="text" name="description" placeholder="Enter description"/>
+            <input type="text" name="description" placeholder="Enter description" />
         </div>
         <div>
             <label for="status">Status </label>
